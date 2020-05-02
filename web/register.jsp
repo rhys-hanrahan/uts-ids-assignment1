@@ -24,68 +24,123 @@
     %>
     <div class="py-5 text-center">
         <h2>Registration form</h2>
-        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <p class="lead">Hi there! We hope you like IOT Bay. Please create an account for a wealth of user-only features like saved addresses.</p>
     </div>
-    <div class="col-md-8 order-md-1">
-      <h4 class="mb-3">Billing address</h4>
-      <form class="needs-validation" novalidate>
+    <form method="post" action="welcome.jsp">
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">User Details</h4>
+          <form class="needs-validation" novalidate>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+            </div>
+
+            <row class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+                  <div class="invalid-feedback">
+                    Please enter a valid email address for your account.
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" required>
+                  <div class="invalid-feedback">
+                    Please enter a strong password for your account.
+                  </div>
+                </div>
+            </div>
+        
+            <row class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="dob_dd">Birth Date</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control col-md-2" id="dob_dd" name="dob_dd" placeholder="DD" required>
+                    <div class="input-group-append">
+                      <div class="input-group-text">/</div>
+                      <input type="text" class="form-control col-md-2" id="dob_mm" name="dob_mm" placeholder="MM" required>
+                      <div class="input-group-append">
+                        <div class="input-group-text">/</div>
+                      </div>
+                      <input type="text" class="form-control col-md-2" id="dob_yyyy" name="dob_yyyy" placeholder="YYYY" required>
+                    </div>
+                  </div>
+                  <div class="invalid-feedback">
+                    Please enter a valid date of birth for your account.
+                  </div>
+                </div>
+            </row>
+        
+            <div class="row">
+              <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gender1" value="male" checked>
+                  <label class="form-check-label" for="gender1">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gender2" value="female">
+                  <label class="form-check-label" for="gender2">
+                    Female
+                  </label>
+                </div>
+              </div>
+            </div>
+
+        <!-- Shipping address form
         <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-            <div class="invalid-feedback">
-              Valid first name is required.
+            <div class="col-md-2 mb-3">
+              <label for="streetNumber">Number</label>
+              <input type="text" class="form-control" id="streetNumber" name="streetNumber" placeholder="1234" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address street number.
+              </div>
             </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="lastName">Last name</label>
-            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-            <div class="invalid-feedback">
-              Valid last name is required.
+
+            <div class="col-md-4 mb-3">
+              <label for="streetName">Name</label>
+              <input type="text" class="form-control" id="streetName" name="streetName" placeholder="Main" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address street name.
+              </div>
             </div>
-          </div>
+
+            <div class="col-md-3 mb-3">
+              <label for="streetType">Type</label>
+              <input type="text" class="form-control" id="streetType" name="streetType" placeholder="Street" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address street type.
+              </div>
+            </div>
         </div>
 
         <div class="mb-3">
-          <label for="username">Username</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">@</span>
-            </div>
-            <input type="text" class="form-control" id="username" placeholder="Username" required>
-            <div class="invalid-feedback" style="width: 100%;">
-              Your username is required.
-            </div>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label for="email">Email <span class="text-muted">(Optional)</span></label>
-          <input type="email" class="form-control" id="email" placeholder="you@example.com">
-          <div class="invalid-feedback">
-            Please enter a valid email address for shipping updates.
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label for="address">Address</label>
-          <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-          <div class="invalid-feedback">
-            Please enter your shipping address.
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-          <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+          <label for="addressPrefix1">Address 2 <span class="text-muted">(Optional)</span></label>
+          <input type="text" class="form-control" id="addressPrefix1" name="addressPrefix1" placeholder="Apartment or suite">
         </div>
 
         <div class="row">
           <div class="col-md-5 mb-3">
             <label for="country">Country</label>
-            <select class="custom-select d-block w-100" id="country" required>
+            <select class="custom-select d-block w-100" id="country" name="country" required>
               <option value="">Choose...</option>
-              <option>United States</option>
+              <option value="Australia">Australia</option>
             </select>
             <div class="invalid-feedback">
               Please select a valid country.
@@ -93,22 +148,26 @@
           </div>
           <div class="col-md-4 mb-3">
             <label for="state">State</label>
-            <select class="custom-select d-block w-100" id="state" required>
+            <select class="custom-select d-block w-100" id="state" name="state" required>
               <option value="">Choose...</option>
-              <option>California</option>
+              <option value="New South Wales">New South Wales</option>
             </select>
             <div class="invalid-feedback">
               Please provide a valid state.
             </div>
           </div>
           <div class="col-md-3 mb-3">
-            <label for="zip">Zip</label>
-            <input type="text" class="form-control" id="zip" placeholder="" required>
+            <label for="postcode">Postcode</label>
+            <input type="text" class="form-control" id="postcode" name="postcode" placeholder="" required>
             <div class="invalid-feedback">
-              Zip code required.
+              Post code required.
             </div>
           </div>
         </div>
+        -->
+          
+        <!--
+        Use this later
         <hr class="mb-4">
         <div class="custom-control custom-checkbox">
           <input type="checkbox" class="custom-control-input" id="same-address">
@@ -119,7 +178,9 @@
           <label class="custom-control-label" for="save-info">Save this information for next time</label>
         </div>
         <hr class="mb-4">
+        -->
 
+        <!-- Payment form
         <h4 class="mb-3">Payment</h4>
 
         <div class="d-block my-3">
@@ -154,25 +215,25 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-3 mb-3">
-            <label for="cc-expiration">Expiration</label>
-            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-            <div class="invalid-feedback">
-              Expiration date required
+            <div class="col-md-3 mb-3">
+                <label for="cc-expiration">Expiration</label>
+                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                <div class="invalid-feedback">
+                  Expiration date required
+                </div>
             </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="cc-cvv">CVV</label>
-            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-            <div class="invalid-feedback">
-              Security code required
+            <div class="col-md-3 mb-3">
+                <label for="cc-cvv">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                <div class="invalid-feedback">
+                  Security code required
+                </div>
             </div>
-          </div>
         </div>
+        -->
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
-      </form>
-    </div>
+        <button class="btn btn-primary btn-lg btn-block col-md-6" name="doRegister" value="doRegister" type="submit">Register</button>
+    </form>
     <% } %>
         <hr>
     </div> <!-- /container -->

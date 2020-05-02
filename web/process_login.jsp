@@ -14,7 +14,7 @@
   //Mock customer
   Customer customer = new Customer(request.getParameter("email"), "Rhys", "Hanrahan");
   customer.setId(1);
-  session.setAttribute("customer", customer);
+  session.setAttribute("customer", customer);           
   //Load products
   Product p1 = new Product();
   p1.setId(1);
