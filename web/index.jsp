@@ -1,71 +1,47 @@
 <%@page import="uts.isd.model.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%
-  //Log user in and mock user object
-  User user = new User();
-  user.setId(1);
-  user.setCustomerId(1);
-  user.setEmail(request.getParameter("email"));
-  user.setPassword(request.getParameter("password"));
-  user.setAge(30);
-  user.setAccessLevel(1); //Normal user
-  session.setAttribute("user", user);
-  //Mock customer
-  Customer customer = new Customer(request.getParameter("email"), "Rhys", "Hanrahan");
-  customer.setId(1);
-  session.setAttribute("customer", customer);
-  //Load products
-  Product p1 = new Product();
-  p1.setId(1);
-  p1.setName("Widget");
-  p1.setDescription("This is a widget");
-  p1.setPrice(12.50);
-  Product p2 = new Product();
-  p2.setId(2);
-  p2.setName("Thingy");
-  p2.setDescription("This is a thingy");
-  p2.setPrice(52.75);
-  
-  List<Product> products = new ArrayList<Product>();
-  products.add(p1);
-  products.add(p2);
-  session.setAttribute("products", products);
-  
-  //Load order
-  Order order = new Order();
-  order.setId(1);
-  order.setCustomerId(1);
-  order.setBillingAddressId(1);
-  order.setShippingAddressId(1);
-  order.setPaymentMethodId(1);
-  order.setUserId(1);
-  
-  OrderLine line = new OrderLine();
-  line.setId(1);
-  line.setOrderId(1);
-  line.setProductId(1);
-  line.setQuantity(3);
-  line.setUnitPrice(12.50);
-  order.addOrderLine(line);
-  
-  OrderLine line2 = new OrderLine();
-  line2.setId(2);
-  line2.setOrderId(1);
-  line2.setProductId(2);
-  line2.setQuantity(2);
-  line2.setUnitPrice(52.75);
-  order.addOrderLine(line2);
-  session.setAttribute("order", order);
-
-%>
 <jsp:include page="header.jsp" />
+<%
+    User user = (User)session.getAttribute("user");
+    Customer customer = (Customer)session.getAttribute("customer");
+    boolean isLoggedIn = (user != null);
+%>
 
 <main role="main">
+    
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="banner">
+    <div class="banner-text">
+    <div class="container">
+      <h1 class="display-3">Welcome to <svg class="bi bi-cloud" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M4.887 7.2l-.964-.165A2.5 2.5 0 103.5 12h10a1.5 1.5 0 00.237-2.981L12.7 8.854l.216-1.028a4 4 0 10-7.843-1.587l-.185.96zm9.084.341a5 5 0 00-9.88-1.492A3.5 3.5 0 103.5 13h9.999a2.5 2.5 0 00.394-4.968c.033-.16.06-.324.077-.49z" clip-rule="evenodd"/>
+</svg>&nbsp;IOT Bay!</h1>
+      <p>Welcome to IoT Bay, the one-stop-shop for internet of things devices. Take a look around, or login to get started!</p>
+      <% if (!isLoggedIn) { %>
+      <p><a class="btn btn-primary btn-lg" href="register.jsp" role="button">Register here &raquo;</a></p>
+      <% } else { %>
+      <p><a class="btn btn-primary btn-lg" href="categories.jsp" role="button">View Categories &raquo;</a></p>
+      <% } %>
+    </div>
+    </div>
+  </div>
 
   <div class="container">
-      
-      <hr>
+  <%
+      if (!isLoggedIn) {
+  %>
+    <p>Welcome anonymous user, <a href="register.jsp">register</a> or <a href="login.jsp">login</a>, or look at some categories to continue.</p>
+  <% } else { %>
+    <p>Welcome back, <%= customer.getFirstName() %>! We see you are now logged in:</p>
+    <ul>
+        <li>Email: <%= user.getEmail() %></li>
+        <li>Age: <%= user.getAge() %></li>
+    </ul>
+  <% } %>
+    
+    <hr>
+  
   </div> <!-- /container -->
 
 </main>

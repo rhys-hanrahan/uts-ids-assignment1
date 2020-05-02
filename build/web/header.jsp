@@ -40,7 +40,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="index.jsp">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="categories.jsp">Categories</a>
@@ -61,6 +61,10 @@
         </svg>
         <%= customer.getFirstName() %>
         </a>
+    </div>
+    &nbsp;
+    <div>
+        <a href="logout.jsp" class="btn btn-outline-light">Logout</a>
     </div>
     <% } else { %>
     <a href="register.jsp" class="btn btn-outline-light">Register</a>
