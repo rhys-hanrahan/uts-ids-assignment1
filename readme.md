@@ -1,6 +1,8 @@
 ## IOT Bay Web store
 #### UTS Introduction to Software Development - Assignment
 
+Author: Rhys Hanrahan (11000801)
+
 This is a readme for the Assignment 1 software spike.
 
 The steps to use this software follow a standard JSP Web Application.
