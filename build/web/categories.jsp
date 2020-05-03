@@ -6,6 +6,7 @@
   //then invalidate the session BEFORE including the header, so it shows correctly.
   User user = (User)session.getAttribute("user");
   Customer customer = (Customer)session.getAttribute("customer");
+  List<Product> products = (List<Product>)session.getAttribute("products");
   //Store for later
   boolean isLoggedIn = (user != null);
 %>

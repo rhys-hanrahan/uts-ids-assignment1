@@ -80,6 +80,14 @@ public class Product {
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
+    
+    public int getCurrencyId() {
+        return this.currencyId;
+    }
+    
+    public void setCurrencyId(int currencyId) {
+        this.currencyId = currencyId;
+    }
 
     public String getName() {
         return name;

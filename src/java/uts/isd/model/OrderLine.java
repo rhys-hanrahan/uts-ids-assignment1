@@ -84,6 +84,26 @@ public class OrderLine {
     public double getUnitPrice() {
         return unitPrice;
     }
+   
+    public String getUnitPriceFormatted(String format) {
+        return String.format(format, this.unitPrice);
+    }
+    
+    public String getUnitPriceFormatted() {
+        return String.format("$%.02f", this.unitPrice);
+    }
+    
+    public double getPrice() {
+        return this.unitPrice * this.quantity;
+    }
+   
+    public String getPriceFormatted(String format) {
+        return String.format(format, this.getPrice());
+    }
+    
+    public String getPriceFormatted() {
+        return String.format("$%.02f", this.getPrice());
+    }
 
     public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;

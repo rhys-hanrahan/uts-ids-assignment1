@@ -10,7 +10,7 @@
     List<Product> products = (List<Product>)session.getAttribute("products");
     
     int totalQuantity = (order == null || products == null ? 0 : order.getTotalQuantity());
-    double totalCost = (order == null || products == null ? 0 : order.getTotalCost());
+    String totalCost = (order == null || products == null ? "$0.00" : order.getTotalCostFormatted());
     boolean isLoggedIn = (user != null && customer != null);
 %>
 <head>
@@ -93,11 +93,20 @@
                 for (int i = 0; i < order.getLineCount(); i++) {
                     OrderLine line = order.getOrderLines().get(i);
                 %>
-                <a class="dropdown-item" href="#"><%= line.getQuantity() %>x <%= products.get(line.getProductId() - 1).getName() %>: $<%= line.getUnitPrice() * line.getQuantity() %></a>
+                <a class="dropdown-item" href="#"><%= line.getQuantity() %>x <%= products.get(line.getProductId() - 1).getName() %>: <%= line.getPriceFormatted() %></a>
                 <% } //End of for %>
+                <hr>
+                <div class="dropdown-item">
+                    <strong>Total: <%= totalCost %></strong>
+                </div>
+                <hr>
+                <div class="dropdown-item">
+                    <a href="view_cart.jsp" class="btn btn-outline-primary">View Cart</a>
+                    <a href="checkout.jsp" class="btn btn-primary">Checkout</a>
+                </div>
             </div>
             &nbsp;&nbsp;&nbsp;                                                        
-      $<%= totalCost %>
+            <%= totalCost %>
             <%
             } //End of if
             %>

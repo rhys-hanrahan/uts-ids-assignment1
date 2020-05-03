@@ -121,6 +121,14 @@ public class Order {
     public double getTotalCost() {
         return totalCost;
     }
+    
+    public String getTotalCostFormatted(String format) {
+        return String.format(format, this.totalCost);
+    }
+    
+    public String getTotalCostFormatted() {
+        return String.format("$%.02f", this.totalCost);
+    }
 
     public void setTotalCost(double totalCost) {
         this.totalCost = totalCost;
