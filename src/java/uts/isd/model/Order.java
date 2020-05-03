@@ -1,12 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * UTS Introduction to Software Development
+ * IOT Bay - Assignment 1
+ * @author Rhys Hanrahan 11000801
  */
 package uts.isd.model;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.servlet.ServletRequest;
 
 /**
  *
@@ -22,21 +24,50 @@ public class Order {
     int paymentMethodId;
     double totalCost;
     int status;
+    private Date createdDate;
+    private int createdBy;
+    private Date modifiedDate;
+    private int modifiedBy;
+
     
     List<OrderLine> orderLines;
 
     public Order() {
-        this.id = 0;
-        this.customerId = 0;
-        this.userId = 0;
-        this.billingAddressId = 0;
-        this.shippingAddressId = 0;
-        this.paymentMethodId = 0;
-        this.totalCost = 0;
-        this.status = 0;
-        
         this.orderLines = new ArrayList<>();
     }
+    
+    /**
+     * This method populates this instance's properties based on form inputs.
+     * 
+     * @param request The controller's HTTPServlet POST request properties.
+     * @return boolean - Returns true if adding the properties was successful. Otherwise false.
+     */
+    public boolean addOrder(ServletRequest request)
+    {
+        if (request.getParameter("id") != null)
+            this.id = Integer.parseInt(request.getParameter("id"));
+        
+        this.customerId = Integer.parseInt(request.getParameter("customerId"));
+        
+        if (request.getParameter("userId") != null)
+            this.userId = Integer.parseInt(request.getParameter("userId"));
+
+        this.shippingAddressId = Integer.parseInt(request.getParameter("shippingAddressId"));
+        this.billingAddressId = Integer.parseInt(request.getParameter("billingAddressId"));
+        this.paymentMethodId = Integer.parseInt(request.getParameter("paymentMethodId"));
+        this.totalCost = Integer.parseInt(request.getParameter("totalCost"));
+        this.status = Integer.parseInt(request.getParameter("status"));
+
+        this.createdDate = new Date();
+        this.modifiedDate = new Date();
+        this.createdBy = 0;
+        this.modifiedBy = 0;
+        
+        this.orderLines = new ArrayList<>();
+        
+        return true;
+    }
+
 
     public int getId() {
         return id;
@@ -133,5 +164,21 @@ public class Order {
             quantity += this.orderLines.get(i).getQuantity();
         
         return quantity;
+    }
+    
+    public Date getCreatedDate() {
+        return this.createdDate;
+    }
+    
+    public Date getModifiedDate() {
+        return this.modifiedDate;
+    }
+    
+    public int getCreatedBy() {
+        return this.createdBy;
+    }
+    
+    public int getModifiedBy() {
+        return this.modifiedBy;
     }
 }

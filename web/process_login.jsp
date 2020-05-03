@@ -8,7 +8,7 @@
   user.setCustomerId(1);
   user.setEmail(request.getParameter("email"));
   user.setPassword(request.getParameter("password"));
-  user.setAge(30);
+  user.setBirthDate("1991-06-14");
   user.setAccessLevel(1); //Normal user
   session.setAttribute("user", user);
   //Mock customer

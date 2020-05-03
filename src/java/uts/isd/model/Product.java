@@ -1,32 +1,33 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * UTS Introduction to Software Development
+ * IOT Bay - Assignment 1
+ * @author Rhys Hanrahan 11000801
  */
 package uts.isd.model;
+
+import java.util.Date;
+import javax.servlet.ServletRequest;
 
 /**
  *
  * @author rhys
  */
 public class Product {
+    
     int id;
-    
     int categoryId;
-    
     String name;
-    
     double price;
-    
     String description;
-    
     String image;
-    
     int initialQuantity;
-    
     int currentQuantity;
-    
     String lastReorderDate;
+    
+    Date createdDate;
+    int createdBy;
+    Date modifiedDate;
+    int modifiedBy;
 
     public Product() {
     }
@@ -37,6 +38,30 @@ public class Product {
         this.name = name;
         this.price = price;
         this.description = description;
+    }
+    
+    /**
+     * This method populates this instance's properties based on form inputs.
+     * 
+     * @param request The controller's HTTPServlet POST request properties.
+     * @return boolean - Returns true if adding the properties was successful. Otherwise false.
+     */
+    public boolean addProduct(ServletRequest request)
+    {
+        if (request.getParameter("id") != null)
+            this.id = Integer.parseInt(request.getParameter("id"));
+        
+        this.categoryId = Integer.parseInt(request.getParameter("categoryId"));
+        this.price = Double.parseDouble(request.getParameter("productId"));
+        this.name = request.getParameter("name");
+        this.description = request.getParameter("description");
+
+        this.createdDate = new Date();
+        this.modifiedDate = new Date();
+        this.createdBy = 0;
+        this.modifiedBy = 0;
+        
+        return true;
     }
 
     public int getId() {
@@ -111,5 +136,19 @@ public class Product {
         this.lastReorderDate = lastReorderDate;
     }
     
+    public Date getCreatedDate() {
+        return this.createdDate;
+    }
     
+    public Date getModifiedDate() {
+        return this.modifiedDate;
+    }
+    
+    public int getCreatedBy() {
+        return this.createdBy;
+    }
+    
+    public int getModifiedBy() {
+        return this.modifiedBy;
+    }
 }

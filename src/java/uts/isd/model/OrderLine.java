@@ -1,9 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * UTS Introduction to Software Development
+ * IOT Bay - Assignment 1
+ * @author Rhys Hanrahan 11000801
  */
 package uts.isd.model;
+
+import javax.servlet.ServletRequest;
 
 /**
  *
@@ -16,7 +18,7 @@ public class OrderLine {
     int productId;
     int quantity;
     double unitPrice;
-
+    
     public OrderLine() {
     }
 
@@ -26,6 +28,25 @@ public class OrderLine {
         this.productId = productId;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
+    }
+    
+    /**
+     * This method populates this instance's properties based on form inputs.
+     * 
+     * @param request The controller's HTTPServlet POST request properties.
+     * @return boolean - Returns true if adding the properties was successful. Otherwise false.
+     */
+    public boolean addOrderLine(ServletRequest request)
+    {
+        if (request.getParameter("id") != null)
+            this.id = Integer.parseInt(request.getParameter("id"));
+        
+        this.orderId = Integer.parseInt(request.getParameter("orderId"));
+        this.productId = Integer.parseInt(request.getParameter("productId"));
+        this.quantity = Integer.parseInt(request.getParameter("quantity"));
+        this.unitPrice = Integer.parseInt(request.getParameter("unitPrice"));
+        
+        return true;
     }
 
     public int getId() {

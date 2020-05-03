@@ -19,14 +19,12 @@
     user = new User();
     user.setId(1);
     user.setCustomerId(1);
-    user.setEmail(request.getParameter("email"));
-    user.setPassword(request.getParameter("password"));
-    user.setAge(30);
-    user.setAccessLevel(1); //Normal user
+    user.addUser(request);
     session.setAttribute("user", user);
     
     //Mock customer
-    customer = new Customer(request.getParameter("email"), request.getParameter("firstName"), request.getParameter("lastName"));
+    customer = new Customer();
+    customer.addCustomer(request);
     customer.setId(1);
     session.setAttribute("customer", customer);
     //Load products
@@ -97,7 +95,7 @@
             <li>First Name: <%= customer.getFirstName() %></li>
             <li>Last Name: <%= customer.getLastName() %></li>
             <li>Email: <%= customer.getEmail() %></li>
-            <li>Age: <%= user.getAge() %></li>
+            <li>Age: <%= user.getBirthDate() %> (<%= user.getAge() %> years old)</li>
         </ul>
         <p>Click <a href="index.jsp">here</a> to look at more products.</p>
         <p>Click <a href="">here</a> to view your profile.</p>

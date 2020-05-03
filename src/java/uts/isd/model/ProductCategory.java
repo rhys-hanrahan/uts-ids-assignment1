@@ -1,9 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * UTS Introduction to Software Development
+ * IOT Bay - Assignment 1
+ * @author Rhys Hanrahan 11000801
  */
 package uts.isd.model;
+
+import java.util.Date;
+import javax.servlet.ServletRequest;
 
 /**
  *
@@ -14,12 +17,40 @@ public class ProductCategory {
     String name;
     String description;
     String image;
+    
+    Date createdDate;
+    int createdBy;
+    Date modifiedDate;
+    int modifiedBy;
 
     public ProductCategory(int id, String name, String description, String image) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
+    }
+    
+    /**
+     * This method populates this instance's properties based on form inputs.
+     * 
+     * @param request The controller's HTTPServlet POST request properties.
+     * @return boolean - Returns true if adding the properties was successful. Otherwise false.
+     */
+    public boolean addProductCategory(ServletRequest request)
+    {
+        if (request.getParameter("id") != null)
+            this.id = Integer.parseInt(request.getParameter("id"));
+        
+        this.name = request.getParameter("name");
+        this.description = request.getParameter("description");
+        this.image = request.getParameter("image");
+
+        this.createdDate = new Date();
+        this.modifiedDate = new Date();
+        this.createdBy = 0;
+        this.modifiedBy = 0;
+        
+        return true;
     }
 
     public int getId() {
@@ -54,5 +85,19 @@ public class ProductCategory {
         this.image = image;
     }
     
+    public Date getCreatedDate() {
+        return this.createdDate;
+    }
     
+    public Date getModifiedDate() {
+        return this.modifiedDate;
+    }
+    
+    public int getCreatedBy() {
+        return this.createdBy;
+    }
+    
+    public int getModifiedBy() {
+        return this.modifiedBy;
+    }
 }

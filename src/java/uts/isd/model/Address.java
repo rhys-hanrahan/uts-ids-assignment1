@@ -1,9 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * UTS Introduction to Software Development
+ * IOT Bay - Assignment 1
+ * @author Rhys Hanrahan 11000801
  */
 package uts.isd.model;
+
+import java.util.Date;
+import javax.servlet.ServletRequest;
 
 /**
  *
@@ -24,8 +27,49 @@ public class Address {
     String state;
     String postcode;
     String country;
+    Date createdDate;
+    int createdBy;
+    Date modifiedDate;
+    int modifiedBy;
 
     public Address() {
+    }
+    
+    /**
+     * This method populates this instance's properties based on form inputs.
+     * 
+     * @param request The controller's HTTPServlet POST request properties.
+     * @return boolean - Returns true if adding the properties was successful. Otherwise false.
+     */
+    public boolean addAddress(ServletRequest request)
+    {
+        if (request.getParameter("id") != null)
+            this.id = Integer.parseInt(request.getParameter("id"));
+        
+        this.customerId = Integer.parseInt(request.getParameter("customerId"));
+        
+        if (request.getParameter("userId") != null)
+            this.userId = Integer.parseInt(request.getParameter("userId"));
+        
+        if (request.getParameter("defaultShippingAddress") != null)
+            this.defaultShippingAddress = Integer.parseInt(request.getParameter("defaultShippingAddress"));
+        
+        if (request.getParameter("defaultBillingAddress") != null)
+            this.defaultShippingAddress = Integer.parseInt(request.getParameter("defaultBillingAddress"));
+        
+        this.addressPrefix1 = request.getParameter("addressPrefix1");
+        this.streetNumber = Integer.parseInt(request.getParameter("streetNumber"));
+        this.streetName = request.getParameter("streetName");
+        this.streetType = request.getParameter("streetType");
+        this.suburb = request.getParameter("suburb");
+        this.state = request.getParameter("state");
+        this.postcode = request.getParameter("postcode");
+        this.country = request.getParameter("country");
+        this.createdDate = new Date();
+        this.modifiedDate = new Date();
+        this.createdBy = 0;
+        this.modifiedBy = 0;
+        return true;
     }
 
     public int getId() {
@@ -132,5 +176,19 @@ public class Address {
         this.country = country;
     }
     
+    public Date getCreatedDate() {
+        return this.createdDate;
+    }
     
+    public Date getModifiedDate() {
+        return this.modifiedDate;
+    }
+    
+    public int getCreatedBy() {
+        return this.createdBy;
+    }
+    
+    public int getModifiedBy() {
+        return this.modifiedBy;
+    }
 }

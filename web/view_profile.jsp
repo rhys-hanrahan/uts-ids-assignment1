@@ -21,7 +21,7 @@
         <li>First Name: <%= customer.getFirstName() %></li>
         <li>Last Name: <%= customer.getLastName() %></li>
         <li>Email: <%= customer.getEmail() %></li>
-        <li>Age: <%= user.getAge() %></li>
+        <li>Age: <%= user.getBirthDate() %> (<%= user.getAge() %> years old)</li>
     </ul>
   <% } %>
     

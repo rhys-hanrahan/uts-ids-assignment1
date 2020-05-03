@@ -36,7 +36,7 @@
     <p>Welcome back, <%= customer.getFirstName() %>! We see you are now logged in:</p>
     <ul>
         <li>Email: <%= user.getEmail() %></li>
-        <li>Age: <%= user.getAge() %></li>
+        <li>Age: <%= user.getBirthDate() %></li>
     </ul>
   <% } %>
     

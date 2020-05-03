@@ -1,9 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * UTS Introduction to Software Development
+ * IOT Bay - Assignment 1
+ * @author Rhys Hanrahan 11000801
  */
 package uts.isd.model;
+
+import java.util.Date;
+import javax.servlet.ServletRequest;
 
 /**
  *
@@ -14,13 +17,47 @@ public class PaymentMethod {
     int id;
     int customerId;
     int userId;
-    int defaultPayment;
+    boolean defaultPayment;
     int paymentType;
     String cardName;
     String cardNumber;
     String cardCVV;
+    
+    Date createdDate;
+    int createdBy;
+    Date modifiedDate;
+    int modifiedBy;
 
     public PaymentMethod() {
+    }
+    
+    /**
+     * This method populates this instance's properties based on form inputs.
+     * 
+     * @param request The controller's HTTPServlet POST request properties.
+     * @return boolean - Returns true if adding the properties was successful. Otherwise false.
+     */
+    public boolean addPaymentMethod(ServletRequest request)
+    {
+        if (request.getParameter("id") != null)
+            this.id = Integer.parseInt(request.getParameter("id"));
+        
+        if (request.getParameter("userId") != null)
+            this.userId = Integer.parseInt(request.getParameter("userId"));
+        
+        this.customerId = Integer.parseInt(request.getParameter("customerId"));
+        this.defaultPayment = Boolean.parseBoolean(request.getParameter("productId"));
+        this.paymentType = Integer.parseInt(request.getParameter("paymentType"));
+        this.cardName = request.getParameter("cardName");
+        this.cardNumber = request.getParameter("cardNumber");
+        this.cardCVV = request.getParameter("cardCVV");
+
+        this.createdDate = new Date();
+        this.modifiedDate = new Date();
+        this.createdBy = 0;
+        this.modifiedBy = 0;
+        
+        return true;
     }
 
     public int getId() {
@@ -47,11 +84,11 @@ public class PaymentMethod {
         this.userId = userId;
     }
 
-    public int getDefaultPayment() {
+    public boolean getDefaultPayment() {
         return defaultPayment;
     }
 
-    public void setDefaultPayment(int defaultPayment) {
+    public void setDefaultPayment(boolean defaultPayment) {
         this.defaultPayment = defaultPayment;
     }
 
@@ -87,5 +124,19 @@ public class PaymentMethod {
         this.cardCVV = cardCVV;
     }
     
+    public Date getCreatedDate() {
+        return this.createdDate;
+    }
     
+    public Date getModifiedDate() {
+        return this.modifiedDate;
+    }
+    
+    public int getCreatedBy() {
+        return this.createdBy;
+    }
+    
+    public int getModifiedBy() {
+        return this.modifiedBy;
+    }
 }

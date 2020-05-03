@@ -1,11 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * UTS Introduction to Software Development
+ * IOT Bay - Assignment 1
+ * @author Rhys Hanrahan 11000801
  */
 package uts.isd.model;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletRequest;
 
 /**
  *
@@ -17,9 +24,14 @@ public class User implements Serializable {
     private String email;
     private String password;
     private int accessLevel;
-    private int age;
+    private Date birthDate;
     private String biography;
     private String passwordResetHash; 
+    
+    Date createdDate;
+    int createdBy;
+    Date modifiedDate;
+    int modifiedBy;
     
     public User()
     {
@@ -30,6 +42,44 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
     }
+    
+    /**
+     * This method populates this instance's properties based on form inputs.
+     * 
+     * @param request The controller's HTTPServlet POST request properties.
+     * @return boolean - Returns true if adding the properties was successful. Otherwise false.
+     */
+    public boolean addUser(ServletRequest request)
+    {
+        if (request.getParameter("id") != null)
+            this.id = Integer.parseInt(request.getParameter("id"));
+        
+        if (request.getParameter("customerId") != null)
+            this.customerId = Integer.parseInt(request.getParameter("customerId"));
+        this.email = request.getParameter("email");
+        this.password = request.getParameter("password");
+        if (request.getParameter("accessLevel") != null)
+            this.accessLevel = Integer.parseInt(request.getParameter("accessLevel"));
+        else
+            this.accessLevel = 1;
+        
+        //https://www.javatpoint.com/java-string-to-date
+        String dob = request.getParameter("dob_yyyy")+"-"+request.getParameter("dob_mm")+"-"+request.getParameter("dob_dd");
+        try {
+            this.birthDate = new SimpleDateFormat("yyyy-MM-dd").parse(dob);
+        } catch (ParseException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+        this.createdDate = new Date();
+        this.modifiedDate = new Date();
+        this.createdBy = 0;
+        this.modifiedBy = 0;
+        
+        return true;
+    }
+
 
     public int getId() {
         return id;
@@ -71,12 +121,29 @@ public class User implements Serializable {
         this.accessLevel = accessLevel;
     }
 
-    public int getAge() {
-        return age;
+    public Date getBirthDate() {
+        return birthDate;
     }
-
-    public void setAge(int age) {
-        this.age = age;
+    
+    public void setBirthDate(String s)
+    {
+        try {
+            this.birthDate = new SimpleDateFormat("yyyy-MM-dd").parse(s);
+        } catch (ParseException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setBirthDate(Date date)
+    {
+        this.birthDate = date;
+    }
+    
+    public int getAge() {
+        Date now = new Date();
+        long diffMs = Math.abs(now.getTime() - this.birthDate.getTime());
+        long diff = TimeUnit.DAYS.convert(diffMs, TimeUnit.MILLISECONDS);
+        return (int)Math.floor((double)diff / (double)365);
     }
 
     public String getBiography() {
@@ -93,5 +160,21 @@ public class User implements Serializable {
 
     public void setPasswordResetHash(String passwordResetHash) {
         this.passwordResetHash = passwordResetHash;
+    }
+    
+    public Date getCreatedDate() {
+        return this.createdDate;
+    }
+    
+    public Date getModifiedDate() {
+        return this.modifiedDate;
+    }
+    
+    public int getCreatedBy() {
+        return this.createdBy;
+    }
+    
+    public int getModifiedBy() {
+        return this.modifiedBy;
     }
 }
