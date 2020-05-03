@@ -8,7 +8,6 @@
   Customer customer = (Customer)session.getAttribute("customer");
   //Store for later
   boolean isLoggedIn = (user != null);
-  session.invalidate();
 %>
 
 <jsp:include page="header.jsp" />
