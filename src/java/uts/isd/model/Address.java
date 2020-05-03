@@ -14,23 +14,23 @@ import javax.servlet.ServletRequest;
  */
 public class Address {
     
-    int id;
-    int customerId;
-    int userId;
-    int defaultShippingAddress; //Is this address the customer's default shipping address?
-    int defaultBillingAddress; //Is this address the customer's default billing address?    
-    String addressPrefix1;
-    int streetNumber;
-    String streetName;
-    String streetType;
-    String suburb;
-    String state;
-    String postcode;
-    String country;
-    Date createdDate;
-    int createdBy;
-    Date modifiedDate;
-    int modifiedBy;
+    private int id;
+    private int customerId;
+    private int userId;
+    private int defaultShippingAddress; //Is this address the customer's default shipping address?
+    private int defaultBillingAddress; //Is this address the customer's default billing address?    
+    private String addressPrefix1;
+    private int streetNumber;
+    private String streetName;
+    private String streetType;
+    private String suburb;
+    private String state;
+    private String postcode;
+    private String country;
+    private Date createdDate;
+    private int createdBy;
+    private Date modifiedDate;
+    private int modifiedBy;
 
     public Address() {
     }

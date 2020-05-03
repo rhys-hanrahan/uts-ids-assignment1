@@ -89,13 +89,13 @@
               <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
               <div class="col-sm-10">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gender1" value="male" checked>
+                  <input class="form-check-input" type="radio" name="sex" id="gender1" value="1" checked>
                   <label class="form-check-label" for="gender1">
                     Male
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gender2" value="female">
+                  <input class="form-check-input" type="radio" name="sex" id="gender2" value="2">
                   <label class="form-check-label" for="gender2">
                     Female
                   </label>

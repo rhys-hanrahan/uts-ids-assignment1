@@ -15,17 +15,17 @@
       if (!isLoggedIn) {
   %>
     <p>Sorry, you're not logged in! <a href="register.jsp">Register</a> or <a href="login.jsp">login</a> to see this page.</p>
-  <% } else { %>
-    <p>Welcome back, <%= customer.getFirstName() %>! Your current details are below:</p>
-    <ul>
-        <li>First Name: <%= customer.getFirstName() %></li>
-        <li>Last Name: <%= customer.getLastName() %></li>
-        <li>Email: <%= customer.getEmail() %></li>
-        <li>Age: <%= user.getBirthDate() %> (<%= user.getAge() %> years old)</li>
-        <li>Gender: <%= user.getSex() %></li>
-    </ul>
-    <hr>
-    <a href="edit_profile.jsp" class="btn btn-primary">Edit Profile</a>
+  
+    <% } else if (isLoggedIn && request.getParameter("doUpdate") == null) { %>
+    <p>Form was not submitted properly.</p>
+ <%
+    } else {
+        customer.addCustomer(request);
+        user.addUser(request);
+        session.setAttribute("customer", customer);
+        session.setAttribute("user", user);
+  %>
+    <p><%= request.getParameter("firstName") %>, your profile has been updated successfully. Please view your new profile <a href="view_profile.jsp">here</a>.</p>
   <% } %>
     
     <hr>

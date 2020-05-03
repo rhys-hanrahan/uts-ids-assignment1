@@ -14,19 +14,19 @@ import javax.servlet.ServletRequest;
  */
 public class PaymentMethod {
     
-    int id;
-    int customerId;
-    int userId;
-    boolean defaultPayment;
-    int paymentType;
-    String cardName;
-    String cardNumber;
-    String cardCVV;
+    private int id;
+    private int customerId;
+    private int userId;
+    private boolean defaultPayment;
+    private int paymentType;
+    private String cardName;
+    private String cardNumber;
+    private String cardCVV;
     
-    Date createdDate;
-    int createdBy;
-    Date modifiedDate;
-    int modifiedBy;
+    private Date createdDate;
+    private int createdBy;
+    private Date modifiedDate;
+    private int modifiedBy;
 
     public PaymentMethod() {
     }

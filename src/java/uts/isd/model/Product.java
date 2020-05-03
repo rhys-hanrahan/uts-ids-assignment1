@@ -14,20 +14,21 @@ import javax.servlet.ServletRequest;
  */
 public class Product {
     
-    int id;
-    int categoryId;
-    String name;
-    double price;
-    String description;
-    String image;
-    int initialQuantity;
-    int currentQuantity;
-    String lastReorderDate;
+    private int id;
+    private int categoryId;
+    private int currencyId;
+    private String name;
+    private double price;
+    private String description;
+    private String image;
+    private int initialQuantity;
+    private int currentQuantity;
+    private String lastReorderDate;
     
-    Date createdDate;
-    int createdBy;
-    Date modifiedDate;
-    int modifiedBy;
+    private Date createdDate;
+    private int createdBy;
+    private Date modifiedDate;
+    private int modifiedBy;
 
     public Product() {
     }

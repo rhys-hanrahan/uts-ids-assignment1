@@ -12,22 +12,25 @@ import javax.servlet.ServletRequest;
  *
  * @author rhys
  */
-public class ProductCategory {
+public class Currency {
+    
     private int id;
     private String name;
-    private String description;
-    private String image;
+    private String abbreviation;
+    private double costConversionRate;
+    private double retailConversionRate;
     
     private Date createdDate;
     private int createdBy;
     private Date modifiedDate;
     private int modifiedBy;
-
-    public ProductCategory(int id, String name, String description, String image) {
-        this.id = id;
+    
+    public Currency() { }
+    
+    public Currency(String name, String abbreviation)
+    {
         this.name = name;
-        this.description = description;
-        this.image = image;
+        this.abbreviation = abbreviation;
     }
     
     /**
@@ -36,14 +39,15 @@ public class ProductCategory {
      * @param request The controller's HTTPServlet POST request properties.
      * @return boolean - Returns true if adding the properties was successful. Otherwise false.
      */
-    public boolean addProductCategory(ServletRequest request)
+    public boolean addCurrency(ServletRequest request)
     {
         if (request.getParameter("id") != null)
             this.id = Integer.parseInt(request.getParameter("id"));
         
         this.name = request.getParameter("name");
-        this.description = request.getParameter("description");
-        this.image = request.getParameter("image");
+        this.abbreviation = request.getParameter("abbreviation");
+        this.costConversionRate = Double.parseDouble(request.getParameter("costConversionRate"));
+        this.retailConversionRate = Double.parseDouble(request.getParameter("retailConversionRate"));
 
         this.createdDate = new Date();
         this.modifiedDate = new Date();
@@ -57,47 +61,37 @@ public class ProductCategory {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getAbbreviation() {
+        return abbreviation;
     }
 
-    public String getDescription() {
-        return description;
+    public double getCostConversionRate() {
+        return costConversionRate;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public double getRetailConversionRate() {
+        return retailConversionRate;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-    
     public Date getCreatedDate() {
-        return this.createdDate;
+        return createdDate;
     }
-    
-    public Date getModifiedDate() {
-        return this.modifiedDate;
-    }
-    
+
     public int getCreatedBy() {
-        return this.createdBy;
+        return createdBy;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public int getModifiedBy() {
+        return modifiedBy;
     }
     
-    public int getModifiedBy() {
-        return this.modifiedBy;
-    }
+    
 }

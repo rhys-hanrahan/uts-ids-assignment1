@@ -16,14 +16,15 @@ import javax.servlet.ServletRequest;
  */
 public class Order {
     
-    int id;
-    int customerId;
-    int userId;
-    int billingAddressId;
-    int shippingAddressId;
-    int paymentMethodId;
-    double totalCost;
-    int status;
+    private int id;
+    private int customerId;
+    private int currencyId;
+    private int userId;
+    private int billingAddressId;
+    private int shippingAddressId;
+    private int paymentMethodId;
+    private double totalCost;
+    private int status;
     private Date createdDate;
     private int createdBy;
     private Date modifiedDate;

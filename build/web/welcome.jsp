@@ -96,9 +96,10 @@
             <li>Last Name: <%= customer.getLastName() %></li>
             <li>Email: <%= customer.getEmail() %></li>
             <li>Age: <%= user.getBirthDate() %> (<%= user.getAge() %> years old)</li>
+            <li>Gender: <%= user.getSex() %></li>
         </ul>
         <p>Click <a href="index.jsp">here</a> to look at more products.</p>
-        <p>Click <a href="">here</a> to view your profile.</p>
+        <p>Click <a href="view_profile.jsp">here</a> to view your profile.</p>
         <% } else if (status == 2) { //Existing user %>
         <p>Welcome back, <%= customer.getFirstName() %>,</p>
         <p>You are logged in. Click <a href="view_profile.jsp">here</a> to view your profile.</p>

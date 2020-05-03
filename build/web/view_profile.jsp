@@ -22,7 +22,10 @@
         <li>Last Name: <%= customer.getLastName() %></li>
         <li>Email: <%= customer.getEmail() %></li>
         <li>Age: <%= user.getBirthDate() %> (<%= user.getAge() %> years old)</li>
+        <li>Gender: <%= user.getSex() %></li>
     </ul>
+    <hr>
+    <a href="edit_profile.jsp" class="btn btn-primary">Edit Profile</a>
   <% } %>
     
     <hr>

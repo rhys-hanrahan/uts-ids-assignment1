@@ -12,23 +12,18 @@ import javax.servlet.ServletRequest;
  *
  * @author rhys
  */
-public class ProductCategory {
+public class ProductReview {
     private int id;
-    private String name;
-    private String description;
-    private String image;
+    private int customerId;
+    private String text;
+    private int rating;
     
     private Date createdDate;
     private int createdBy;
     private Date modifiedDate;
     private int modifiedBy;
-
-    public ProductCategory(int id, String name, String description, String image) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.image = image;
-    }
+    
+    public ProductReview() { }
     
     /**
      * This method populates this instance's properties based on form inputs.
@@ -41,9 +36,11 @@ public class ProductCategory {
         if (request.getParameter("id") != null)
             this.id = Integer.parseInt(request.getParameter("id"));
         
-        this.name = request.getParameter("name");
-        this.description = request.getParameter("description");
-        this.image = request.getParameter("image");
+        if (request.getParameter("customerId") != null)
+            this.customerId = Integer.parseInt(request.getParameter("customerId"));
+        
+        this.text = request.getParameter("text");
+        this.rating = Integer.parseInt(request.getParameter("description"));
 
         this.createdDate = new Date();
         this.modifiedDate = new Date();
@@ -57,47 +54,31 @@ public class ProductCategory {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public String getName() {
-        return name;
+    public String getText() {
+        return text;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getRating() {
+        return rating;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-    
     public Date getCreatedDate() {
-        return this.createdDate;
+        return createdDate;
     }
-    
-    public Date getModifiedDate() {
-        return this.modifiedDate;
-    }
-    
+
     public int getCreatedBy() {
-        return this.createdBy;
+        return createdBy;
     }
-    
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
     public int getModifiedBy() {
-        return this.modifiedBy;
+        return modifiedBy;
     }
 }

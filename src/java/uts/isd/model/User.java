@@ -21,17 +21,19 @@ import javax.servlet.ServletRequest;
 public class User implements Serializable {
     private int id;
     private int customerId;
+    private int defaultCurrencyId;
     private String email;
     private String password;
     private int accessLevel;
     private Date birthDate;
+    private int sex;
     private String biography;
     private String passwordResetHash; 
     
-    Date createdDate;
-    int createdBy;
-    Date modifiedDate;
-    int modifiedBy;
+    private Date createdDate;
+    private int createdBy;
+    private Date modifiedDate;
+    private int modifiedBy;
     
     public User()
     {
@@ -71,6 +73,8 @@ public class User implements Serializable {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+        
+        this.sex = Integer.parseInt(request.getParameter("sex"));
 
         this.createdDate = new Date();
         this.modifiedDate = new Date();
@@ -152,6 +156,16 @@ public class User implements Serializable {
 
     public void setBiography(String biography) {
         this.biography = biography;
+    }
+    
+    public String getSex() {
+        if (this.sex == 1)
+            return "Male";
+        
+        else if (this.sex == 2)
+            return "Female";
+        else
+            return "Unknown";
     }
 
     public String getPasswordResetHash() {

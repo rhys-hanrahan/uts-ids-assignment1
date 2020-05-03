@@ -13,11 +13,11 @@ import javax.servlet.ServletRequest;
  */
 public class OrderLine {
     
-    int id;
-    int orderId;
-    int productId;
-    int quantity;
-    double unitPrice;
+    private int id;
+    private int orderId;
+    private int productId;
+    private int quantity;
+    private double unitPrice;
     
     public OrderLine() {
     }
