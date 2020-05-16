@@ -5,6 +5,7 @@
  */
 package uts.isd.model;
 
+import java.io.File;
 import java.util.Date;
 import javax.servlet.ServletRequest;
 
@@ -78,7 +79,12 @@ public class ProductCategory {
     }
 
     public String getImage() {
-        return image;
+        if (this.image == null || this.image.isEmpty())
+            return "";
+        
+        return "img/"+
+                //"categories/"+
+                this.image;
     }
 
     public void setImage(String image) {

@@ -27,14 +27,33 @@
     customer.addCustomer(request);
     customer.setId(1);
     session.setAttribute("customer", customer);
+    //Mock currency
+    Currency currency = new Currency();
+    currency.setId(1);
+    currency.setName("Australian Dollar");
+    currency.setAbbreviation("AUD");
+    currency.setCostConversionRate(0.64297);
+    currency.setRetailConversionRate(0.650);
+    //Mock category
+    ProductCategory cat1 = new ProductCategory(1, "Transistors", "There are some transistors here.", "transistors.jpg");
+    ProductCategory cat2 = new ProductCategory(2, "PCBs", "There are some PCBs here.", "pcbs.jpg");
+    List<ProductCategory> categories = new ArrayList<ProductCategory>();
+    categories.add(cat1);
+    categories.add(cat2);
+    session.setAttribute("categories", categories);
+
     //Load products
     Product p1 = new Product();
     p1.setId(1);
+    p1.setCurrencyId(1);
+    p1.setCategoryId(1);
     p1.setName("Widget");
     p1.setDescription("This is a widget");
     p1.setPrice(12.50);
     Product p2 = new Product();
     p2.setId(2);
+    p2.setCurrencyId(1);
+    p2.setCategoryId(2);
     p2.setName("Thingy");
     p2.setDescription("This is a thingy");
     p2.setPrice(52.75);
